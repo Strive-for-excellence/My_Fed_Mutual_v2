@@ -3,23 +3,6 @@
    1  FedMD
    2  使用信息量
    3  使用不确定度
-   
-# run 
-
-        python3 main.py --dataset cifar10 --epochs 200 --num_users 10 --local_ep 1 --local_bs 64 --policy 2  --train_num 1000 --name fedavg
-        
-        policy = 1, seperate traing, policy >= 2 fed traing 
-        col_policy = 1-mutual learning  2-average
-        use_all_data = 0-normal split  1-all_clients have all data
-## 使用公共数据集
-        --col_policy = 1 从avg_label 学习,=2 mutual learning
-        --pub_data 公共数据集的名称
-        python3 main.py --dataset cifar10 --epochs 200 --num_users 10 --local_ep 1 --local_bs 64 --policy 2  --train_num 1000 --col_policy 1 --pub_data cifar100 --name use_pub_data
-## noniid 部分
-        --iid 1 --noniid pathological --alpha 2
-## 互学习部分
-        --col_policy 1 --pub_data cifar10 --pub_data_num 5000
-# 验证 avg 和 weight avg
 
 cifar10 
         pathological non-iid client = 10 ,train_num = 1000,epcoh = 500
@@ -211,8 +194,6 @@ Pathological
         --col_policy 2 \
         --pub_data cifar100 --pub_data_num 5000 --use_avg_loss 2 --kalman 1 \
         --name cifar100_fedmd_avg_2_alpha_80_kalman_1              
-### fedavg + distillation
-
 
 ##      mmist 测试
         0
