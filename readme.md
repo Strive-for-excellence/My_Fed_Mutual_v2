@@ -53,7 +53,7 @@ cifar100
         launch -- \
         python3 main.py --dataset cifar10 --epochs 500 --num_users 10 --local_ep 1 --local_bs 100 --train_num 1000 \
         --policy 1   \
-        --iid 0 --noniid pathological --alpha 10 \
+        --iid 0 --noniid pathological --alpha_6 \
         --col_policy 2 \
         --pub_data cifar10 --pub_data_num 1000 --use_avg_loss 2 --kalman 1   \
         --name fedmd_avg_2_alpha_10_kalman_3
@@ -168,8 +168,8 @@ Pathological
         launch -- \
         python3 main.py  --dataset cifar100 --num_classes 100 --epochs 500 --num_users 5 --local_ep 1 --local_bs 100 --train_num 5000 \
         --policy 1   \
-        --iid 0 --noniid pathological --alpha 60 \
-        --name cifar100_fedmd_avg_0_alpha_60
+        --iid 0 --noniid pathological --alpha_60 \
+        --name cifar100_fedmd_avg_0_alpha_100
 ####     1
         launch -- \
         python3 main.py --dataset cifar100 --num_classes 100 --epochs 500 --num_users 5 --local_ep 1 --local_bs 100 --train_num 5000 \
@@ -197,31 +197,31 @@ Pathological
 
 ##      mmist 测试
         0
-        python3 main.py --dataset mnist --num_classes 100 --epochs 500 --num_users 5 --local_ep 1 --local_bs 100 --train_num 1000 \
+        python3 main.py --dataset mnist --num_classes 10 --epochs 500 --num_users 5 --local_ep 1 --local_bs 100 --train_num 1000 \
         --policy 1   \
-        --iid 0 --noniid pathological --alpha 10 
+        --iid 0 --noniid pathological --alpha_6 \
         --name mnist_fedmd_avg_0_alpha_10
 
         1
-        python3 main.py --dataset mnist --num_classes 100 --epochs 500 --num_users 5 --local_ep 1 --local_bs 100 --train_num 1000 \
-        --policy 2   \
-        --iid 0 --noniid pathological --alpha 10 \
+        python3 main.py --dataset mnist --num_classes 10 --epochs 500 --num_users 5 --local_ep 1 --local_bs 100 --train_num 1000 \
+        --policy 1   \
+        --iid 0 --noniid pathological --alpha_6 \
         --col_policy 1 \
         --pub_data mnist --pub_data_num 1000 --use_avg_loss 1 \
         --name mnist_fedmd_avg_1_alpha_10
 
         2
-        python3 main.py --dataset mnist --num_classes 100 --epochs 500 --num_users 5 --local_ep 1 --local_bs 100 --train_num 1000 \
-        --policy 2   \
-        --iid 0 --noniid pathological --alpha 10 \
+        python3 main.py --dataset mnist --num_classes 10 --epochs 500 --num_users 5 --local_ep 1 --local_bs 100 --train_num 1000 \
+        --policy 1   \
+        --iid 0 --noniid pathological --alpha_6 \
         --col_policy 2 \
         --pub_data mnist --pub_data_num 1000 --use_avg_loss 2 \
         --name mnist_fedmd_avg_2_alpha_10
 
         3
-        python3 main.py --dataset mnist --num_classes 100 --epochs 500 --num_users 5 --local_ep 1 --local_bs 100 --train_num 1000 \
-        --policy 2   \
-        --iid 0 --noniid pathological --alpha 10 \
+        python3 main.py --dataset mnist --num_classes 10 --epochs 500 --num_users 5 --local_ep 1 --local_bs 100 --train_num 1000 \
+        --policy 1   \
+        --iid 0 --noniid pathological --alpha_6 \
         --col_policy 2 \
         --pub_data mnist --pub_data_num 1000 --use_avg_loss 3 \
         --name mnist_fedmd_avg_3_alpha_10

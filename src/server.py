@@ -179,15 +179,76 @@ class Server:
                     item_mean ,item_cov  = [],[]
                     for item in range(data_num):
                         tmp_mean = client_item_mean[0][item]
-                        tmp_cov = client_item_cov[0][item]
+                        eps = 1e-12
+                        tmp_cov = client_item_cov[0][item]+np.eye(self.args.num_classes)*eps
                         for client in range(1,self.args.num_users):
-                            tmp_mean,tmp_cov = multivariate_multiply(tmp_mean,tmp_cov,client_item_mean[client][item],client_item_cov[client][item])
+                            tmp_mean,tmp_cov = multivariate_multiply(tmp_mean,tmp_cov,
+                                                                     client_item_mean[client][item],client_item_cov[client][item]+np.eye(self.args.num_classes)*eps)
                         item_mean.append(tmp_mean)
                         item_cov.append(tmp_cov)
                     item_mean = np.array(item_mean)
                     avg_soft_label = torch.FloatTensor(item_mean)
+                elif self.args.use_avg_loss == 4:
+                    client_item_mean, client_item_cov = [],[]
+                    for client in range(self.args.num_users):
+                        self.clients[client].local_model.train()
+                        with torch.no_grad():
+                            times = 100
+                            results = []
+                            for time in range(times):
+                                result = F.softmax(self.clients[client].local_model(images),dim=1)
+                                results.append(result.cpu().numpy())
+                                # tmp = torch.sum(result,dim=1)
+                            # for item in len()
+                            # 对每张图片处理
+                            item_mean,item_cov = [],[]
+                            for item in range(data_num):
+                                temp = []
+                                for time in range(times):
+                                    temp.append(results[time][item])
+                                temp = np.array(temp)
+                                mean,cov = self.fit_multivariate_gaussian_distribution(temp)
+                                item_mean.append(mean)
+                                item_cov.append(cov)
+                            client_item_mean.append(item_mean)
+                            client_item_cov.append(item_cov)
+                    outputs = client_item_mean
+                    # softmax
+                    outputs_tmp = np.array(outputs)
+                    outputs_entropy = []
+                    if self.args.kalman==0:
+                        for i in range(self.args.num_users):
+                            outputs_entropy.append(
+                                np.log2(self.args.num_classes) - np.sum(-outputs_tmp[i] * np.log2(outputs_tmp[i]),
+                                                                        axis=1))
+                        all_entropy = np.stack(outputs_entropy, axis=0)
+                        all_entropy = torch.tensor(all_entropy)/self.args.weight_temperature
+                        all_entropy = F.softmax(all_entropy,dim=0)
+                        all_entropy = torch.unsqueeze(all_entropy,-1)
+                        # if batch_idx == 1:
+                        #     print(all_entropy)
+                        avg_soft_label = np.sum(np.array(outputs_tmp) * all_entropy.numpy(), axis=0)
+                        avg_soft_label = torch.tensor(avg_soft_label)
+
+                    else:
+                        # kalman
+                        for i in range(self.args.num_users):
+                            outputs_entropy.append(np.sum(-outputs_tmp[i] * np.log2(outputs_tmp[i]),axis=1))
+                        all_entropy = np.stack(outputs_entropy, axis=0)
+                        sigma_divided_by_1  = 1/torch.square(torch.tensor(all_entropy))
+                        sum_sigma = 1 / torch.sum(sigma_divided_by_1,dim=0)
+                        weight = sum_sigma * torch.tensor(sigma_divided_by_1)
+                        if self.args.kalman == 2:
+                            weight = weight/self.args.weight_temperature
+                            weight = F.softmax(weight,dim=0)
+                        weight = torch.unsqueeze(weight,-1)
+                        avg_soft_label =  torch.sum(torch.tensor(outputs_tmp)*weight,dim=0)
+                    avg_soft_label = avg_soft_label.to(self.device)
+                    # for i in range(self.args.num_users):
+                    #     outputs_tmp[i] =
+                    outputs_entropy = []
                 avg_soft_label = avg_soft_label.to(self.device)
-                # sum_avg = torch.sum(avg_soft_label,dim=1)
+                sum_avg = torch.sum(avg_soft_label,dim=1)
                 # 利用无标签数据集训练
                 for i in range(self.args.num_users):
 

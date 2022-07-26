@@ -79,7 +79,10 @@ def pathological_noniid(train_dataset, test_dataset, num_users, alpha, seed, arg
 
     class_idx = 0
     for i in range(num_users):
+        print("clinet = {} classes = ".format(i),end = "")
         for j in range(alpha):  # 每个client alpha 个类
+            # print("classes = ",)
+            print(class_idx,end = " ")
             train_selected = random_state.choice(train_idxs_classes[class_idx], int(num_client_train_sample / alpha), replace=False)
             train_dict_users[i] += train_selected.tolist()
             test_selected = random_state.choice(test_idxs_classes[class_idx], int(num_client_test_sample / alpha), replace=False)
@@ -88,6 +91,7 @@ def pathological_noniid(train_dataset, test_dataset, num_users, alpha, seed, arg
             test_idxs_classes[class_idx] = np.array(list(set(test_idxs_classes[class_idx]) - set(test_selected)))
             class_idx += 1
             if class_idx == num_class: class_idx = 0
+        print("")
         train_dict_users[i] = np.array(train_dict_users[i])
         test_dict_users[i] = np.array(test_dict_users[i])
     return train_dict_users, test_dict_users
