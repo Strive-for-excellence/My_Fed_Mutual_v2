@@ -27,16 +27,17 @@ if __name__ == '__main__':
     #              '/root/My_Fed_mutual/save/Result_dataset(cifar10)_R(500)_N(4)_E(1)_trainnum(5000)_P(1)_name(cifar10_fedmd_avg_2_alpha_d_60_kalman_1).json',
     #              '/root/My_Fed_mutual/save/Result_dataset(cifar10)_R(500)_N(4)_E(1)_trainnum(5000)_P(1)_name(cifar10_fedmd_avg_2_alpha_d_60_kalman_2).json']
     #                                                    Result_dataset(mnist)_R(500)_N(5)_E(1)_trainnum(1000)_P(2)_name(mnist_fedmd_avg_1_alpha_5).json
-    file_name = [r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_0_alpha_5).json',
-                 r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_1_alpha_5).json',
-                 r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_2_alpha_5).json',
-                 r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_2_alpha_5_kalman_1).json',
-                 r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_3_alpha_5).json']
-    # file_name = [r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_0_d_alpha_10).json',
-    #              r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_1_d_alpha_10).json',
-    #              r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_2_d_alpha_10).json',
-    #              r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_2_d_alpha_10_kalman_1).json',
-    #              r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_3_d_alpha_10).json']
+    # file_name = [r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_0_alpha_5).json',
+    #              r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_1_alpha_5).json',
+    #              r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_2_alpha_5).json',
+    #              r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_2_alpha_5_kalman_1).json',
+    #              r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_4_alpha_5_kalman_1).json']
+    file_name = [r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_0_d_alpha_0.01).json',
+                 r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_1_d_alpha_0.01).json',
+                 r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_2_d_alpha_0.01).json',
+                 r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_2_d_alpha_0.01_kalman_1).json',
+                 r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_4_d_alpha_0.01).json',
+                 r'Z:\zhangxingyan\My_Fed_mutual_v2\save\Result_dataset(mnist)_R(300)_N(5)_E(1)_trainnum(100)_P(1)_name(mnist_fedmd_avg_4_d_alpha_0.01_kalman_1).json']
     #             #   /root/My_Fed_mutual/save/Result_dataset(cifar100)_R(300)_N(4)_E(1)_trainnum(10000)_P(1)_name(cifar100_fedmd_avg_1_alpha_d_60).json
     # file_name = ['/root/My_Fed_mutual/save/Result_dataset(cifar100)_R(300)_N(20)_E(1)_trainnum(500)_P(1)_name(cifar100_fedmd_avg_0_alpha_d_60).json',
     #              '/root/My_Fed_mutual/save/Result_dataset(cifar100)_R(300)_N(20)_E(1)_trainnum(500)_P(1)_name(cifar100_fedmd_avg_1_alpha_d_60).json',
@@ -44,7 +45,7 @@ if __name__ == '__main__':
 #   a = '/sa'
 
 # /root/My_Fed_mutual/save/Result_dataset(cifar100)_R(300)_N(20)_E(1)_trainnum(500)_P(1)_name(cifar100_fedmd_avg_0_alpha_d_1).json
-    name = ['individual','avg','weight_avg','weight_avg_entropy','weight_avg_uncertain','weight_avg_kalman_10']
+    name = ['individual','avg','weight_avg','weight_avg_kalman','weight_avg_MCdropout','weight_avg_kalman_MCdropout']
     for i in range(0,len(file_name)):
         with open(file_name[i]) as f:
             f  = json.load(f)
@@ -61,6 +62,6 @@ if __name__ == '__main__':
             plt.xlabel('epoch')
             plt.ylabel('acc')
             plt.legend()
-    plt.title('mnist dataset  alpha_5')
+    plt.title('mnist dataset  alpha_1')
     plt.show()  
     plt.savefig('test.png')

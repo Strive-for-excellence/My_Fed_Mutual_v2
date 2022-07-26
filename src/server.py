@@ -141,7 +141,7 @@ class Server:
                         for i in range(self.args.num_users):
                             outputs_entropy.append(np.sum(-outputs_tmp[i] * np.log2(outputs_tmp[i]),axis=1))
                         all_entropy = np.stack(outputs_entropy, axis=0)
-                        sigma_divided_by_1  = 1/torch.square(torch.tensor(all_entropy))
+                        sigma_divided_by_1  = 1/torch.tensor(np.square(all_entropy))
                         sum_sigma = 1 / torch.sum(sigma_divided_by_1,dim=0)
                         weight = sum_sigma * torch.tensor(sigma_divided_by_1)
                         if self.args.kalman == 2:
@@ -151,43 +151,6 @@ class Server:
                         avg_soft_label =  torch.sum(torch.tensor(outputs_tmp)*weight,dim=0)
                     avg_soft_label = avg_soft_label.to(self.device)
                 # 使用MC dropout uncertain based
-                elif self.args.use_avg_loss == 3:
-                    client_item_mean, client_item_cov = [],[]
-                    for client in range(self.args.num_users):
-                        self.clients[client].local_model.train()
-                        with torch.no_grad():
-                            times = 100
-                            results = []
-                            for time in range(times):
-                                result = F.softmax(self.clients[client].local_model(images),dim=1)
-                                results.append(result.cpu().numpy())
-                                # tmp = torch.sum(result,dim=1)
-                            # for item in len()
-                            # 对每张图片处理
-                            item_mean,item_cov = [],[]
-                            for item in range(data_num):
-                                temp = []
-                                for time in range(times):
-                                    temp.append(results[time][item])
-                                temp = np.array(temp)
-                                mean,cov = self.fit_multivariate_gaussian_distribution(temp)
-                                item_mean.append(mean)
-                                item_cov.append(cov)
-                            client_item_mean.append(item_mean)
-                            client_item_cov.append(item_cov)
-                    # 融合
-                    item_mean ,item_cov  = [],[]
-                    for item in range(data_num):
-                        tmp_mean = client_item_mean[0][item]
-                        eps = 1e-12
-                        tmp_cov = client_item_cov[0][item]+np.eye(self.args.num_classes)*eps
-                        for client in range(1,self.args.num_users):
-                            tmp_mean,tmp_cov = multivariate_multiply(tmp_mean,tmp_cov,
-                                                                     client_item_mean[client][item],client_item_cov[client][item]+np.eye(self.args.num_classes)*eps)
-                        item_mean.append(tmp_mean)
-                        item_cov.append(tmp_cov)
-                    item_mean = np.array(item_mean)
-                    avg_soft_label = torch.FloatTensor(item_mean)
                 elif self.args.use_avg_loss == 4:
                     client_item_mean, client_item_cov = [],[]
                     for client in range(self.args.num_users):
@@ -235,7 +198,7 @@ class Server:
                         for i in range(self.args.num_users):
                             outputs_entropy.append(np.sum(-outputs_tmp[i] * np.log2(outputs_tmp[i]),axis=1))
                         all_entropy = np.stack(outputs_entropy, axis=0)
-                        sigma_divided_by_1  = 1/torch.square(torch.tensor(all_entropy))
+                        sigma_divided_by_1  = 1/torch.tensor(np.square(all_entropy))
                         sum_sigma = 1 / torch.sum(sigma_divided_by_1,dim=0)
                         weight = sum_sigma * torch.tensor(sigma_divided_by_1)
                         if self.args.kalman == 2:

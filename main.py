@@ -20,7 +20,10 @@ def get_model(args):
     # global_model = resnet32(num_classes=args.num_classes)
     global_model = ResNet18(num_classes=args.num_classes)
     # mnist
-    global_model = DNN(1*28*28,10,1200)
+    if args.dataset == 'mnist':
+        global_model = DNN(1*28*28,10,1200)
+    else:
+        global_model = ResNet18_drop(num_classes=args.num_classes)
     # if args.model in ['ResNet18','ResNet18','ResNet50','ResNet101','ResNet152','ResNet18_Sto','ResNet34_Sto','ResNet50_Sto','ResNet101_Sto','ResNet152_Sto']:
     #     if args.model == 'ResNet18':
     #         global_model = ResNet18(args.num_classes)

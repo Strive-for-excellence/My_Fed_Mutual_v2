@@ -215,13 +215,13 @@ Pathological
         --policy 1   \
         --iid 0 --noniid pathological --alpha_6 \
         --col_policy 2 \
-        --pub_data mnist --pub_data_num 1000 --use_avg_loss 2 \
-        --name mnist_fedmd_avg_2_alpha_10
+        --pub_data mnist --pub_data_num 1000 --use_avg_loss 2 --kalman 1 \
+        --name mnist_fedmd_avg_2_alpha_10_kalman_1
 
-        3
+        4
         python3 main.py --dataset mnist --num_classes 10 --epochs 500 --num_users 5 --local_ep 1 --local_bs 100 --train_num 1000 \
         --policy 1   \
         --iid 0 --noniid pathological --alpha_6 \
         --col_policy 2 \
-        --pub_data mnist --pub_data_num 1000 --use_avg_loss 3 \
-        --name mnist_fedmd_avg_3_alpha_10
+        --pub_data mnist --pub_data_num 1000 --use_avg_loss 2 --kalman 1 \
+        --name mnist_fedmd_avg_2_alpha_10_kalman_1

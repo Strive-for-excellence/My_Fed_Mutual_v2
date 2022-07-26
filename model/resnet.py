@@ -64,10 +64,10 @@ class Bottleneck(nn.Module):
 
 
 class ResNet(nn.Module):
-    def __init__(self, block, num_blocks, num_classes=10):
+    def __init__(self, block, num_blocks, num_classes=10,drop_rate = 0.0):
         super(ResNet, self).__init__()
         self.in_planes = 64
-
+        self.drop_rate = drop_rate
         self.conv1 = nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1, bias=False)
         self.bn1 = nn.BatchNorm2d(64)
         self.layer1 = self._make_layer(block, 64, num_blocks[0], stride=1)
@@ -75,6 +75,7 @@ class ResNet(nn.Module):
         self.layer3 = self._make_layer(block, 256, num_blocks[2], stride=2)
         self.layer4 = self._make_layer(block, 512, num_blocks[3], stride=2)
         self.linear = nn.Linear(512 * block.expansion, num_classes)
+        self.drop_layer = nn.Dropout(p=self.drop_rate)
 
     def _make_layer(self, block, planes, num_blocks, stride):
         strides = [stride] + [1] * (num_blocks - 1)
@@ -92,6 +93,7 @@ class ResNet(nn.Module):
         out = self.layer4(out)
         out = F.avg_pool2d(out, 4)
         out = out.view(out.size(0), -1)
+        out = self.drop_layer(out)
         out = self.linear(out)
         return out
 
@@ -100,6 +102,8 @@ def ResNet18(num_classes):
     return ResNet(BasicBlock, [2, 2, 2, 2], num_classes=num_classes)
 def ResNet34(num_classes):
     return ResNet(BasicBlock, [3, 4, 6, 3], num_classes=num_classes)
+def ResNet18_drop(num_classes):
+    return ResNet(BasicBlock, [2, 2, 2, 2], num_classes=num_classes, drop_rate=0.5)
 
 
 def ResNet50(num_classes):
