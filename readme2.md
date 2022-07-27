@@ -9,130 +9,181 @@
         0
         python3 main.py --dataset mnist --num_classes 10 --epochs 300 --num_users 5 --local_ep 1 --local_bs 100 --train_num 100 \
         --policy 1   \
-        --iid 0 --noniid pathological --alpha 8 \
-        --name mnist_fedmd_avg_0_alpha_8
+        --iid 0 --noniid pathological --alpha 6  \
+        --name mnist_fedmd_avg_0_alpha_6
 
         1
         python3 main.py --dataset mnist --num_classes 10 --epochs 300 --num_users 5 --local_ep 1 --local_bs 100 --train_num 100 \
         --policy 1   \
-        --iid 0 --noniid pathological --alpha 8 \
+        --iid 0 --noniid pathological --alpha 6  \
         --col_policy 2 \
-        --pub_data mnist --pub_data_num 100 --use_avg_loss 1 \
-        --name mnist_fedmd_avg_1_alpha_8_test2
+        --pub_data mnist --pub_data_num 100 --use_avg_loss 1  \
+        --name mnist_fedmd_avg_1_alpha_6
 
         2
         python3 main.py --dataset mnist --num_classes 10 --epochs 300 --num_users 5 --local_ep 1 --local_bs 100 --train_num 100 \
         --policy 1   \
-        --iid 0 --noniid pathological --alpha 8 \
+        --iid 0 --noniid pathological --alpha 6  \
         --col_policy 2 \
-        --pub_data mnist --pub_data_num 100 --use_avg_loss 2 \
-        --name mnist_fedmd_avg_2_alpha_8
+        --pub_data mnist --pub_data_num 100 --use_avg_loss 2  \
+        --name mnist_fedmd_avg_2_alpha_6
 
         2_kalman_1
         python3 main.py --dataset mnist --num_classes 10 --epochs 300 --num_users 5 --local_ep 1 --local_bs 100 --train_num 100 \
         --policy 1   \
-        --iid 0 --noniid pathological --alpha 8 \
+        --iid 0 --noniid pathological --alpha 6  \
         --col_policy 2 \
-        --pub_data mnist --pub_data_num 100 --use_avg_loss 2 \
-        --name mnist_fedmd_avg_2_alpha_8_kalman_1
+        --pub_data mnist --pub_data_num 100 --use_avg_loss 2 --kalman 1 \
+        --name mnist_fedmd_avg_2_alpha_6_kalman_1
 
-        3
+        4
         python3 main.py --dataset mnist --num_classes 10 --epochs 300 --num_users 5 --local_ep 1 --local_bs 100 --train_num 100 \
         --policy 1   \
-        --iid 0 --noniid pathological --alpha 8 \
+        --iid 0 --noniid pathological --alpha 6 \
         --col_policy 2 \
-        --pub_data mnist --pub_data_num 100 --use_avg_loss 3 \
-        --name mnist_fedmd_avg_3_alpha_8_test2
+        --pub_data mnist --pub_data_num 100 --use_avg_loss 4 \
+        --name mnist_fedmd_avg_4_alpha_6
+
+       4 kalman 1
+        python3 main.py --dataset mnist --num_classes 10 --epochs 300 --num_users 5 --local_ep 1 --local_bs 100 --train_num 100 \
+        --policy 1   \
+        --iid 0 --noniid pathological --alpha 6 \
+        --col_policy 2 \
+        --pub_data mnist --pub_data_num 100 --use_avg_loss 4 \
+        --name mnist_fedmd_avg_4_alpha_6_kalman_1
 
 # 狄利克雷non-iid
         0
         python3 main.py --dataset mnist --num_classes 10 --epochs 300 --num_users 5 --local_ep 1 --local_bs 100 --train_num 100 \
         --policy 1   \
-        --iid 0 --noniid dirichlet --alpha 0.01 \
-        --name mnist_fedmd_avg_0_d_alpha_0.01
+        --iid 0 --noniid dirichlet --alpha 0.005 \
+        --name mnist_fedmd_avg_0_d_alpha_0.005
 
         1
         python3 main.py --dataset mnist --num_classes 10 --epochs 300 --num_users 5 --local_ep 1 --local_bs 100 --train_num 100 \
         --policy 1   \
-        --iid 0 --noniid dirichlet --alpha 0.01 \
+        --iid 0 --noniid dirichlet --alpha 0.005 \
         --col_policy 2 \
         --pub_data mnist --pub_data_num 100 --use_avg_loss 1 \
-        --name mnist_fedmd_avg_1_d_alpha_0.01
+        --name mnist_fedmd_avg_1_d_alpha_0.005
 
         2
         python3 main.py --dataset mnist --num_classes 10 --epochs 300 --num_users 5 --local_ep 1 --local_bs 100 --train_num 100 \
         --policy 1   \
-        --iid 0 --noniid dirichlet --alpha 0.01 \
+        --iid 0 --noniid dirichlet --alpha 0.005 \
         --col_policy 2 \
         --pub_data mnist --pub_data_num 100 --use_avg_loss 2 \
-        --name mnist_fedmd_avg_2_d_alpha_0.01
+        --name mnist_fedmd_avg_2_d_alpha_0.005
 
         2_kalman_1
         python3 main.py --dataset mnist --num_classes 10 --epochs 300 --num_users 5 --local_ep 1 --local_bs 100 --train_num 100 \
         --policy 1   \
-        --iid 0 --noniid dirichlet --alpha 0.01 \
+        --iid 0 --noniid dirichlet --alpha 0.005 \
         --col_policy 2 \
         --pub_data mnist --pub_data_num 100 --use_avg_loss 2 --kalman 1 \
-        --name mnist_fedmd_avg_2_d_alpha_0.01_kalman_1
+        --name mnist_fedmd_avg_2_d_alpha_0.005_kalman_1
 
         4
         python3 main.py --dataset mnist --num_classes 10 --epochs 300 --num_users 5 --local_ep 1 --local_bs 100 --train_num 100 \
         --policy 1   \
-        --iid 0 --noniid dirichlet --alpha 0.01 \
+        --iid 0 --noniid dirichlet --alpha 0.005 \
         --col_policy 2 \
         --pub_data mnist --pub_data_num 100 --use_avg_loss 4  \
-        --name mnist_fedmd_avg_4_d_alpha_0.01
+        --name mnist_fedmd_avg_4_d_alpha_0.005
 
         4_kalman_1
         python3 main.py --dataset mnist --num_classes 10 --epochs 300 --num_users 5 --local_ep 1 --local_bs 100 --train_num 100 \
         --policy 1   \
-        --iid 0 --noniid dirichlet --alpha 0.01 \
+        --iid 0 --noniid dirichlet --alpha 0.005 \
         --col_policy 2 \
         --pub_data mnist --pub_data_num 100 --use_avg_loss 4 --kalman 1 \
-        --name mnist_fedmd_avg_4_d_alpha_0.01_kalman_1
+        --name mnist_fedmd_avg_4_d_alpha_0.005_kalman_1
 
 
-cifar10
+## cifar10
 
 ###     dirichlet
 1,0.5,1,100
 ####     0
-        python3 main.py  --dataset cifar10 --num_classes 10 --epochs 500 --num_users 4 --local_ep 1 --local_bs 100 --train_num 1000 \
+        python3 main.py  --dataset cifar10 --num_classes 10 --epochs 500 --num_users 4 --local_ep 1 --local_bs 100 --train_num 5000 \
         --policy 1   \
-        --iid 0 --noniid dirichlet --alpha 1 \
-        --name cifar10_fedmd_avg_0_alpha_d_1
+        --iid 0 --noniid dirichlet --alpha 100 \
+        --name cifar10_fedmd_avg_0_alpha_d_100
 ####     1
-        python3 main.py --dataset cifar10 --num_classes 10 --epochs 500 --num_users 4 --local_ep 1 --local_bs 100 --train_num 1000 \
+        python3 main.py --dataset cifar10 --num_classes 10 --epochs 500 --num_users 4 --local_ep 1 --local_bs 100 --train_num 5000 \
         --policy 1   \
-        --iid 0 --noniid dirichlet --alpha 1 \
+        --iid 0 --noniid dirichlet --alpha 100 \
         --col_policy 2 \
-        --pub_data cifar10 --pub_data_num 1000 --use_avg_loss 1 \
-        --name cifar10_fedmd_avg_1_alpha_d_1
+        --pub_data cifar10 --pub_data_num 5000 --use_avg_loss 1 \
+        --name cifar10_fedmd_avg_1_alpha_d_100
 ####     2 
-        python3 main.py --dataset cifar10 --num_classes 10 --epochs 500 --num_users 4 --local_ep 1 --local_bs 100 --train_num 1000 \
+        python3 main.py --dataset cifar10 --num_classes 10 --epochs 500 --num_users 4 --local_ep 1 --local_bs 100 --train_num 5000 \
         --policy 1   \
         --iid 0 --noniid dirichlet --alpha  1 \
         --col_policy 2 \
-        --pub_data cifar10 --pub_data_num 1000 --use_avg_loss 2 \
-        --name cifar10_fedmd_avg_2_alpha_d_1
+        --pub_data cifar10 --pub_data_num 5000 --use_avg_loss 2 \
+        --name cifar10_fedmd_avg_2_alpha_d_100
  ####     2 kalman1
-        python3 main.py --dataset cifar10 --num_classes 10 --epochs 500 --num_users 4 --local_ep 1 --local_bs 100 --train_num 1000 \
+        python3 main.py --dataset cifar10 --num_classes 10 --epochs 500 --num_users 4 --local_ep 1 --local_bs 100 --train_num 5000 \
         --policy 1   \
-        --iid 0 --noniid dirichlet --alpha 1 \
+        --iid 0 --noniid dirichlet --alpha 100 \
         --col_policy 2 \
-        --pub_data cifar10 --pub_data_num 1000 --use_avg_loss 2 --kalman 1 \
-        --name cifar10_fedmd_avg_2_alpha_d_1_kalman_1
+        --pub_data cifar10 --pub_data_num 5000 --use_avg_loss 2 --kalman 1 \
+        --name cifar10_fedmd_avg_2_alpha_d_100_kalman_1
 ####     4 
-        python3 main.py --dataset cifar10 --num_classes 10 --epochs 500 --num_users 4 --local_ep 1 --local_bs 100 --train_num 1000 \
+        python3 main.py --dataset cifar10 --num_classes 10 --epochs 500 --num_users 4 --local_ep 1 --local_bs 100 --train_num 5000 \
         --policy 1   \
-        --iid 0 --noniid dirichlet --alpha 1 \
+        --iid 0 --noniid dirichlet --alpha 100 \
         --col_policy 2 \
-        --pub_data cifar10 --pub_data_num 1000 --use_avg_loss 4  \
-        --name cifar10_fedmd_avg_4_alpha_d_1
+        --pub_data cifar10 --pub_data_num 5000 --use_avg_loss 4  \
+        --name cifar10_fedmd_avg_4_alpha_d_100
 ####     4 kalman1
-        python3 main.py --dataset cifar10 --num_classes 10 --epochs 500 --num_users 4 --local_ep 1 --local_bs 100 --train_num 1000 \
+        python3 main.py --dataset cifar10 --num_classes 10 --epochs 500 --num_users 4 --local_ep 1 --local_bs 100 --train_num 5000 \
         --policy 1   \
-        --iid 0 --noniid dirichlet --alpha 1 \
+        --iid 0 --noniid dirichlet --alpha 100 \
         --col_policy 2 \
-        --pub_data cifar10 --pub_data_num 1000 --use_avg_loss 4 --kalman 1 \
-        --name cifar10_fedmd_avg_4_alpha_d_1_kalman_1  
+        --pub_data cifar10 --pub_data_num 5000 --use_avg_loss 4 --kalman 1 \
+        --name cifar10_fedmd_avg_4_alpha_d_100_kalman_1  
+## cifar100 
+###     non-iid
+1,5,10,50,100
+####     0
+        python3 main.py  --dataset cifar100 --num_classes 100 --epochs 500 --num_users 5 --local_ep 1 --local_bs 100 --train_num 5000 \
+        --policy 1   \
+        --iid 0 --noniid dirichlet --alpha 0.1 \
+        --name cifar100_fedmd_avg_0_alpha_d_0.1
+####     1
+        python3 main.py --dataset cifar100 --num_classes 100 --epochs 500 --num_users 5 --local_ep 1 --local_bs 100 --train_num 5000 \
+        --policy 1   \
+        --iid 0 --noniid dirichlet --alpha 0.1 \
+        --col_policy 2 \
+        --pub_data cifar100 --pub_data_num 5000 --use_avg_loss 1 \
+        --name cifar100_fedmd_avg_1_alpha_d_0.1
+####     2
+        python3 main.py --dataset cifar100 --num_classes 100 --epochs 500 --num_users 5 --local_ep 1 --local_bs 100 --train_num 5000 \
+        --policy 1   \
+        --iid 0 --noniid dirichlet --alpha 0.1 \
+        --col_policy 2 \
+        --pub_data cifar100 --pub_data_num 5000 --use_avg_loss 2 \
+        --name cifar100_fedmd_avg_2_alpha_d_0.1
+####   2 kalman_1
+        python3 main.py --dataset cifar100 --num_classes 100 --epochs 500 --num_users 5 --local_ep 1 --local_bs 100 --train_num 5000 \
+        --policy 1   \
+        --iid 0 --noniid dirichlet --alpha 0.1 \
+        --col_policy 2 \
+        --pub_data cifar100 --pub_data_num 5000 --use_avg_loss 2 --kalman 1 \
+        --name cifar100_fedmd_avg_2_alpha_d_0.1_kalman_1 
+####     4
+        python3 main.py --dataset cifar100 --num_classes 100 --epochs 500 --num_users 5 --local_ep 1 --local_bs 100 --train_num 5000 \
+        --policy 1   \
+        --iid 0 --noniid dirichlet --alpha 0.1 \
+        --col_policy 2 \
+        --pub_data cifar100 --pub_data_num 5000 --use_avg_loss 4 \
+        --name cifar100_fedmd_avg_4_alpha_d_0.1
+####   4 kalman_1
+        python3 main.py --dataset cifar100 --num_classes 100 --epochs 500 --num_users 5 --local_ep 1 --local_bs 100 --train_num 5000 \
+        --policy 1   \
+        --iid 0 --noniid dirichlet --alpha 0.1 \
+        --col_policy 2 \
+        --pub_data cifar100 --pub_data_num 5000 --use_avg_loss 4 --kalman 1 \
+        --name cifar100_fedmd_avg_4_alpha_d_0.1_kalman_1
