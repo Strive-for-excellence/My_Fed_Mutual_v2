@@ -121,14 +121,14 @@
         --policy 1   \
         --iid 0 --noniid dirichlet --alpha 0.01 \
         --col_policy 2 \
-        --pub_data cifar10 --pub_data_num 1000 --use_avg_loss 4 --kalman 1 \
+        --pub_data cifar10 --pub_data_num 1000 --use_avg_loss 4  \
         --name cifar10_fedmd_avg_4_alpha_d_0.01_kalman_1  
 
         python3 main.py --dataset cifar10 --num_classes 10 --epochs 1000 --num_users 20 --local_ep 1 --local_bs 100 --train_num 1000 --lr 0.01 \
         --policy 1   \
         --iid 0 --noniid dirichlet --alpha 0.01 \
         --col_policy 2 \
-        --pub_data cifar10 --pub_data_num 1000 --use_avg_loss 4 --kalman 1 --forward_times 1 \
+        --pub_data cifar10 --pub_data_num 1000 --use_avg_loss 4  --forward_times 1 \
         --name cifar10_fedmd_avg_4_alpha_d_0.01_kalman_1_forward_times_1  
 ####    5
         python3 main.py --dataset cifar10 --num_classes 10 --epochs 1000 --num_users 20 --local_ep 1 --local_bs 100 --train_num 1000 --lr 0.01 \
