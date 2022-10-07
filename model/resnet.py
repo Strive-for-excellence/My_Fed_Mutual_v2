@@ -5,7 +5,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
+import torch.nn.functional as func
 
 class BasicBlock(nn.Module):
     expansion = 1
@@ -119,7 +119,7 @@ def ResNet152(num_classes):
 class DNN(nn.Module):
     def __init__(self, in_dim,out_dim,n_hid):
         super(DNN, self).__init__()
-        self.drop_rate = 0.5
+        self.drop_rate = 0
         self.in_dim = in_dim
         self.out_dim = out_dim
         self.fc1 = nn.Linear(in_dim, n_hid)
@@ -145,6 +145,62 @@ class DNN(nn.Module):
         out = self.fc3(x)
 
         return out
+class LeNet_cifar10(nn.Module):
+    def __init__(self):
+        super(LeNet_cifar10, self).__init__()
+        self.conv1 = nn.Conv2d(3, 6, kernel_size=5)
+        self.conv2 = nn.Conv2d(6, 16, kernel_size=5)
+        self.fc1 = nn.Linear(16*5*5, 1024)
+        self.fc2 = nn.Linear(1024, 256)
+        self.fc3 = nn.Linear(256, 10)
+        self.drop_layer = nn.Dropout(p=0.5)
+
+    def forward(self, x):
+        x = func.relu(self.conv1(x))
+        x = func.max_pool2d(x, 2)
+        x = func.relu(self.conv2(x))
+        x = func.max_pool2d(x, 2)
+        x = x.view(x.size(0), -1)
+        x = func.relu(self.fc1(x))
+        x = func.relu(self.fc2(x))
+        x = self.drop_layer(x)
+        x = self.fc3(x)
+        return x
+
+
+
+class LeNet_mnist(nn.Module):
+    def __init__(self):
+        super(LeNet_mnist, self).__init__()
+        self.conv1 = nn.Conv2d(1, 6, 5)
+        self.relu1 = nn.ReLU()
+        self.pool1 = nn.MaxPool2d(2)
+        self.conv2 = nn.Conv2d(6, 16, 5)
+        self.relu2 = nn.ReLU()
+        self.pool2 = nn.MaxPool2d(2)
+        self.fc1 = nn.Linear(256, 1024)
+        self.relu3 = nn.ReLU()
+        self.fc2 = nn.Linear(1024, 256)
+        self.relu4 = nn.ReLU()
+        self.fc3 = nn.Linear(256, 10)
+        self.relu5 = nn.ReLU()
+        self.drop_layer = nn.Dropout(p=0.5)
+
+    def forward(self, x):
+        y = self.conv1(x)
+        y = self.relu1(y)
+        y = self.pool1(y)
+        y = self.conv2(y)
+        y = self.relu2(y)
+        y = self.pool2(y)
+        y = y.view(y.shape[0], -1)
+        y = self.fc1(y)
+        y = self.relu3(y)
+        y = self.fc2(y)
+        y = self.relu4(y)
+        y = self.drop_layer(y)
+        y = self.fc3(y)
+        return y
 if __name__ == '__main__':
 
     # net = ResNet18()

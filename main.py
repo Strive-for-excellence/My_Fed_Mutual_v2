@@ -22,6 +22,8 @@ def get_model(args):
     # mnist
     if args.dataset == 'mnist':
         global_model = DNN(1*28*28,10,1200)
+    elif args.dataset == 'cifar10':
+        global_model = LeNet_cifar10()
     else:
         global_model = ResNet18_drop(num_classes=args.num_classes)
     # if args.model in ['ResNet18','ResNet18','ResNet50','ResNet101','ResNet152','ResNet18_Sto','ResNet34_Sto','ResNet50_Sto','ResNet101_Sto','ResNet152_Sto']:

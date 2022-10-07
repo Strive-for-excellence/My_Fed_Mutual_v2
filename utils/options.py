@@ -77,7 +77,8 @@ def args_parser():
     parser.add_argument('--weight_temperature',type=float,default=1,help='temperature of weight caculation ')
     parser.add_argument('--ema',type=float,default=0,help='Use or not use ema label')
     parser.add_argument('--kalman',type=int,default=0,help='Use or not use kalman ')
-    
+    parser.add_argument('--forward_times',type=int,default=5,help='MC dropout times')
+    parser.add_argument('--col_threshold',type=int,default=0,help='col policy threshold epoch')
     args = parser.parse_args()
     if args.name == 'time':
         args.name = str(time.localtime().tm_year)+str(time.localtime().tm_mon)+str(time.localtime().tm_mday)+str(time.localtime().tm_hour)+str(time.localtime().tm_min)+str(time.localtime().tm_sec)
